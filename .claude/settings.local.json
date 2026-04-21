@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run *)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000)",
+      "Bash(curl -s http://localhost:3000)",
+      "Bash(npx claude-code-templates@latest --skill development/senior-frontend)",
+      "Bash(npx claude-code-templates@latest --skill business-marketing/content-creator)",
+      "Bash(npx claude-code-templates@latest --skill creative-design/frontend-design)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)"
+    ]
+  }
+}
