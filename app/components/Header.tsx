@@ -1,103 +1,188 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
+import { IconFilled, WhatsAppPath } from './Icon';
+
+const navLinks = [
+  { label: 'Inicio', href: '/' },
+  { label: 'Servicios', href: '#servicios' },
+  { label: 'Nosotros', href: '#sobre-nosotros' },
+  { label: 'Contacto', href: '#contacto' },
+];
 
 export function Header() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    const fn = () => setScrolled(window.scrollY > 50);
+    window.addEventListener('scroll', fn, { passive: true });
+    fn();
+    return () => window.removeEventListener('scroll', fn);
+  }, []);
 
   return (
-    <header className="fixed top-0 left-0 right-0 bg-white shadow-md z-50">
-      <div className="container-ingasa">
-        <div className="flex items-center justify-between h-20">
-          <Link href="/" className="flex items-center gap-2">
+    <header
+      style={{
+        position: 'fixed', top: 0, left: 0, right: 0, zIndex: 50,
+        background: scrolled ? 'rgba(255,255,255,0.97)' : 'transparent',
+        backdropFilter: scrolled ? 'blur(12px)' : 'none',
+        boxShadow: scrolled ? '0 1px 0 rgba(0,0,0,0.08), 0 4px 24px rgba(0,0,0,0.06)' : 'none',
+        transition: 'background .35s ease, box-shadow .35s ease, backdrop-filter .35s ease',
+      }}
+    >
+      <div style={{ maxWidth: '80rem', margin: '0 auto', padding: '0 1.5rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 76 }}>
+
+          {/* Logo */}
+          <Link href="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', flexShrink: 0 }}>
             <Image
-              src="/logos/Logo-Azul.png"
-              alt="INGASA Logo"
-              width={40}
-              height={40}
-              className="h-10 w-auto"
+              src="/logos/logo-header.png"
+              alt="INGASA"
+              width={130}
+              height={44}
+              priority
+              style={{ height: 38, width: 'auto', objectFit: 'contain', transition: 'opacity .3s' }}
             />
-            <span className="text-xl font-bold text-blue-600">INGASA</span>
           </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8">
-            <Link href="/" className="text-gray-700 hover:text-blue-600 transition">
-              Inicio
-            </Link>
-            <Link href="#servicios" className="text-gray-700 hover:text-blue-600 transition">
-              Servicios
-            </Link>
-            <Link href="#sobre-nosotros" className="text-gray-700 hover:text-blue-600 transition">
-              Nosotros
-            </Link>
-            <Link href="#contacto" className="text-gray-700 hover:text-blue-600 transition">
-              Contacto
-            </Link>
+          {/* Desktop nav — hidden on mobile via .desk class */}
+          <nav className="desk-flex" style={{ alignItems: 'center', gap: 36 }}>
+            {navLinks.map((l) => (
+              <Link
+                key={l.href}
+                href={l.href}
+                className="nav-link"
+                style={{
+                  color: scrolled ? '#334155' : 'rgba(255,255,255,0.88)',
+                  textDecoration: 'none',
+                  fontSize: '0.875rem',
+                  fontWeight: 600,
+                  letterSpacing: '0.02em',
+                  transition: 'color .2s',
+                }}
+              >
+                {l.label}
+              </Link>
+            ))}
           </nav>
 
-          {/* CTA Button */}
-          <Link
-            href="https://wa.link/q0jutu"
-            target="_blank"
-            className="hidden md:block btn-primary"
-          >
-            Contáctanos
-          </Link>
-
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2"
-          >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
+          {/* Desktop CTA — hidden on mobile */}
+          <div className="desk-flex" style={{ alignItems: 'center', gap: 10 }}>
+            <a
+              href="tel:+593995020334"
+              style={{
+                display: 'flex', alignItems: 'center', gap: 6,
+                color: scrolled ? '#64748b' : 'rgba(255,255,255,0.6)',
+                fontSize: '0.82rem', fontWeight: 500, textDecoration: 'none',
+                transition: 'color .2s',
+              }}
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M4 6h16M4 12h16M4 18h16"
-              />
+              <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" style={{ display: 'block', flexShrink: 0 }}>
+                <path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+              </svg>
+              +593 99 502 0334
+            </a>
+            <div style={{ width: 1, height: 20, background: scrolled ? '#e2e8f0' : 'rgba(255,255,255,0.2)' }} />
+            <a
+              href="https://wa.link/q0jutu"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary"
+              style={{
+                display: 'inline-flex', alignItems: 'center', gap: 8,
+                padding: '9px 20px',
+                background: scrolled ? '#2B73CC' : 'rgba(255,255,255,0.12)',
+                color: '#fff',
+                border: scrolled ? 'none' : '1px solid rgba(255,255,255,0.25)',
+                borderRadius: 8,
+                fontWeight: 700, fontSize: '0.85rem', textDecoration: 'none',
+                fontFamily: 'var(--font-body)',
+              }}
+            >
+              <IconFilled size={15}><WhatsAppPath /></IconFilled>
+              WhatsApp
+            </a>
+          </div>
+
+          {/* Mobile hamburger — hidden on desktop via .mob class */}
+          <button
+            className="mob"
+            onClick={() => setOpen(!open)}
+            style={{
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              background: 'none', border: 'none', cursor: 'pointer', padding: 6,
+              color: scrolled ? '#334155' : '#fff',
+            }}
+            aria-label={open ? 'Cerrar menú' : 'Abrir menú'}
+          >
+            <svg width={24} height={24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" style={{ display: 'block' }}>
+              {open
+                ? <><path d="M6 18L18 6" /><path d="M6 6l12 12" /></>
+                : <><path d="M4 6h16" /><path d="M4 12h16" /><path d="M4 18h16" /></>
+              }
             </svg>
           </button>
         </div>
+      </div>
 
-        {/* Mobile Navigation */}
-        {isOpen && (
-          <nav className="md:hidden pb-4 border-t border-gray-200">
+      {/* Mobile menu */}
+      <div
+        className={`mob-menu ${open ? 'open' : ''}`}
+        style={{ background: '#fff', borderTop: '1px solid #f1f5f9' }}
+      >
+        <div style={{ padding: '8px 24px 20px' }}>
+          {navLinks.map((l) => (
             <Link
-              href="/"
-              className="block py-2 text-gray-700 hover:text-blue-600"
+              key={l.href}
+              href={l.href}
+              onClick={() => setOpen(false)}
+              className="mob-nav-link"
+              style={{
+                display: 'block', padding: '12px 16px',
+                color: '#334155', fontWeight: 600, fontSize: '1rem',
+                textDecoration: 'none', borderRadius: 8,
+                fontFamily: 'var(--font-display)',
+                letterSpacing: '0.02em',
+              }}
             >
-              Inicio
+              {l.label}
             </Link>
-            <Link
-              href="#servicios"
-              className="block py-2 text-gray-700 hover:text-blue-600"
+          ))}
+          <div style={{ marginTop: 12, display: 'flex', flexDirection: 'column', gap: 10 }}>
+            <a
+              href="tel:+593995020334"
+              style={{
+                display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
+                padding: '11px 20px', background: '#f8fafc',
+                color: '#334155', borderRadius: 8, fontWeight: 600,
+                fontSize: '0.9rem', textDecoration: 'none',
+                border: '1px solid #e2e8f0',
+              }}
             >
-              Servicios
-            </Link>
-            <Link
-              href="#sobre-nosotros"
-              className="block py-2 text-gray-700 hover:text-blue-600"
-            >
-              Nosotros
-            </Link>
-            <Link
+              <svg width={16} height={16} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" style={{ display: 'block', flexShrink: 0 }}>
+                <path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+              </svg>
+              +593 99 502 0334
+            </a>
+            <a
               href="https://wa.link/q0jutu"
               target="_blank"
-              className="block py-2 btn-primary mt-4"
+              rel="noopener noreferrer"
+              style={{
+                display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10,
+                padding: '13px 20px', background: '#16a34a', color: '#fff',
+                borderRadius: 8, fontWeight: 700, fontSize: '0.95rem',
+                textDecoration: 'none',
+              }}
             >
-              Contáctanos
-            </Link>
-          </nav>
-        )}
+              <IconFilled size={18}><WhatsAppPath /></IconFilled>
+              Contactar por WhatsApp
+            </a>
+          </div>
+        </div>
       </div>
     </header>
   );

@@ -1,45 +1,43 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Barlow_Condensed, Barlow } from "next/font/google";
 import "./globals.css";
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+/* Display font — condensed, industrial authority */
+const display = Barlow_Condensed({
+  variable: "--font-display",
   subsets: ["latin"],
+  weight: ["600", "700", "800", "900"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+/* Body font — clean, readable */
+const body = Barlow({
+  variable: "--font-body",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
-  title: "INGASA - Soluciones en Instalaciones Técnicas | Ecuador",
-  description: "INGASA es una empresa ecuatoriana especializada en instalaciones técnicas de GLP, agua y calefacción con productos certificados y experiencia de 20+ años.",
-  keywords: "instalaciones técnicas, GLP, agua caliente, calefacción, Ecuador, Cuenca",
+  title: "INGASA – Instalaciones Técnicas Certificadas | Ecuador",
+  description: "Empresa ecuatoriana especializada en instalaciones de GLP centralizado, agua, calefacción y redes contra incendios. Más de 20 años de experiencia. Cuenca, Ecuador.",
+  keywords: "instalaciones GLP Ecuador, instalaciones técnicas Cuenca, gas centralizado, termotanques Ecuador, redes contra incendios, INGASA",
   openGraph: {
-    title: "INGASA - Soluciones en Instalaciones Técnicas",
-    description: "Instalaciones de GLP, agua y calefacción con productos certificados",
+    title: "INGASA – Instalaciones Técnicas Certificadas",
+    description: "Soluciones integrales en GLP, agua, calefacción y seguridad. 20+ años de experiencia en Ecuador.",
     url: "https://ingasa-ec.vercel.app",
     siteName: "INGASA",
     type: "website",
+    locale: "es_EC",
   },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html
-      lang="es"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col">
+    <html lang="es" className={`${display.variable} ${body.variable}`}>
+      <body style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-body), system-ui, sans-serif' }}>
         <Header />
-        <main className="flex-grow pt-20">{children}</main>
+        <main style={{ flex: 1 }}>{children}</main>
         <Footer />
       </body>
     </html>

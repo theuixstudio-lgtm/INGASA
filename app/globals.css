@@ -1,73 +1,245 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* ── Design System ── */
+:root {
+  /* INGASA brand colors — extraídos del logo oficial */
+  --navy:       #07172e;
+  --navy-mid:   #0e2a50;
+  --blue:       #2B73CC;   /* azul INGASA */
+  --blue-v:     #2B73CC;
+  --blue-dark:  #1a5aad;
+  --orange:     #F97316;   /* naranja INGASA */
+  --orange-d:   #ea580c;
+  --white:      #ffffff;
+  --slate:      #f8fafc;
+  --text:       #0f172a;
+  --muted:      #64748b;
+  --border:     #e2e8f0;
+  --font-display: 'Barlow Condensed', system-ui, sans-serif;
+  --font-body:    'Barlow', system-ui, sans-serif;
 }
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 html {
   scroll-behavior: smooth;
-}
-
-body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  scroll-padding-top: 76px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Animaciones */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes slideInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes slideInRight {
-  from {
-    opacity: 0;
-    transform: translateX(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-.animate-fade-in {
-  animation: fadeIn 0.6s ease-out forwards;
-}
-
-.animate-slide-in-left {
-  animation: slideInLeft 0.6s ease-out forwards;
-}
-
-.animate-slide-in-right {
-  animation: slideInRight 0.6s ease-out forwards;
-}
-
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body), system-ui, sans-serif;
+  background: #fff;
+  color: var(--text);
+  line-height: 1.6;
+}
+
+/* ── Responsive utilities (no Tailwind dependency) ── */
+@media (min-width: 768px) {
+  .mob { display: none !important; }
+}
+@media (max-width: 767px) {
+  .desk { display: none !important; }
+  .desk-flex { display: none !important; }
+}
+@media (min-width: 768px) {
+  .desk-flex { display: flex !important; }
+}
+
+/* ── Typography ── */
+h1, h2, h3, h4 {
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+}
+
+/* ── Scroll reveal ── */
+.sr   { opacity: 0; transform: translateY(36px); transition: opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1); }
+.sr-l { opacity: 0; transform: translateX(-48px); transition: opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1); }
+.sr-r { opacity: 0; transform: translateX(48px);  transition: opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1); }
+.sr.in, .sr-l.in, .sr-r.in { opacity: 1; transform: none; }
+.sr-d1 { transition-delay: 80ms; }
+.sr-d2 { transition-delay: 160ms; }
+.sr-d3 { transition-delay: 240ms; }
+.sr-d4 { transition-delay: 320ms; }
+.sr-d5 { transition-delay: 400ms; }
+.sr-d6 { transition-delay: 480ms; }
+
+/* ── Badge ── */
+.badge {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: rgba(37,99,235,.08); color: #1d4ed8;
+  font-family: var(--font-body), sans-serif;
+  font-size: 0.68rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase;
+  padding: 5px 14px; border-radius: 999px; margin-bottom: 18px;
+  border: 1px solid rgba(37,99,235,.2);
+}
+
+/* ── Hero overlay ── */
+.hero-overlay {
+  background: linear-gradient(
+    108deg,
+    rgba(7,20,40,.95) 0%,
+    rgba(12,31,74,.85) 42%,
+    rgba(12,31,74,.5) 75%,
+    transparent 100%
+  );
+}
+
+/* ── Blueprint grid pattern ── */
+.bp-grid {
+  background-image:
+    linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* ── Diagonal accent ── */
+.diag-accent::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0; bottom: 0;
+  width: 42%;
+  background: linear-gradient(108deg, transparent 0%, rgba(37,99,235,.04) 100%);
+  clip-path: polygon(20% 0%, 100% 0%, 100% 100%, 0% 100%);
+  pointer-events: none;
+}
+
+/* ── Section divider ── */
+.section-line {
+  width: 48px; height: 3px;
+  background: linear-gradient(90deg, var(--blue), var(--orange));
+  border-radius: 2px;
+  margin: 14px 0 24px;
+}
+
+/* ── Nav underline ── */
+.nav-link { position: relative; }
+.nav-link::after {
+  content: ''; position: absolute; bottom: -3px; left: 0; right: 0; height: 2px;
+  background: var(--blue); transform: scaleX(0); transform-origin: left;
+  transition: transform .25s ease;
+}
+.nav-link:hover::after { transform: scaleX(1); }
+
+/* ── Mobile menu ── */
+.mob-menu { max-height: 0; overflow: hidden; transition: max-height .38s cubic-bezier(.16,1,.3,1); }
+.mob-menu.open { max-height: 500px; }
+
+/* ── Service card ── */
+.svc-card {
+  cursor: pointer;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.svc-card:hover { transform: translateY(-7px); box-shadow: 0 24px 48px rgba(37,99,235,.13); }
+.svc-card:hover .arrow-r { transform: translateX(5px); }
+.arrow-r { transition: transform .2s ease; }
+
+/* ── Feature row ── */
+.feat-row { display: flex; align-items: flex-start; gap: 12px; padding: 10px 0; border-bottom: 1px solid #f1f5f9; }
+.feat-row:last-child { border-bottom: none; }
+
+/* ── Scroll bounce ── */
+@keyframes nudge { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(9px)} }
+.nudge { animation: nudge 2.2s ease-in-out infinite; }
+
+/* ── Stat grid ── */
+@media (min-width: 1024px) {
+  .stat-cell + .stat-cell { border-left: 1px solid rgba(255,255,255,.12); }
+}
+
+/* ── Button hover animations ── */
+.btn-primary {
+  transition: transform .18s ease, box-shadow .18s ease, filter .18s ease !important;
+  cursor: pointer;
+}
+.btn-primary:hover {
+  transform: translateY(-5px) scale(1.04) !important;
+  filter: brightness(1.18) !important;
+  box-shadow: 0 16px 36px rgba(43,115,204,.55) !important;
+}
+.btn-primary:active {
+  transform: translateY(1px) scale(0.97) !important;
+  filter: brightness(0.95) !important;
+}
+
+.btn-whatsapp {
+  transition: transform .18s ease, box-shadow .18s ease, filter .18s ease !important;
+  cursor: pointer;
+}
+.btn-whatsapp:hover {
+  transform: translateY(-5px) scale(1.04) !important;
+  filter: brightness(1.18) !important;
+  box-shadow: 0 16px 36px rgba(22,163,74,.55) !important;
+}
+.btn-whatsapp:active {
+  transform: translateY(1px) scale(0.97) !important;
+}
+
+.btn-ghost {
+  transition: transform .18s ease, background .18s ease, border-color .18s ease !important;
+  cursor: pointer;
+}
+.btn-ghost:hover {
+  transform: translateY(-5px) !important;
+  background: rgba(255,255,255,0.22) !important;
+  border-color: rgba(255,255,255,0.7) !important;
+}
+.btn-ghost:active { transform: translateY(1px) !important; }
+
+.btn-outline {
+  transition: transform .18s ease, background .18s ease, color .18s ease, box-shadow .18s ease !important;
+  cursor: pointer;
+}
+.btn-outline:hover {
+  transform: translateY(-5px) !important;
+  background: var(--blue) !important;
+  color: #fff !important;
+  box-shadow: 0 12px 28px rgba(43,115,204,.4) !important;
+}
+.btn-outline:active { transform: translateY(1px) !important; }
+
+/* ── Social / icon buttons ── */
+.icon-btn {
+  transition: transform .18s ease, background .18s ease, color .18s ease, box-shadow .18s ease !important;
+  cursor: pointer;
+}
+.icon-btn:hover {
+  transform: translateY(-5px) scale(1.2) !important;
+  background: rgba(255,255,255,0.22) !important;
+  color: #fff !important;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3) !important;
+}
+.icon-btn:active { transform: scale(0.9) !important; }
+
+/* ── Stat items ── */
+.stat-item {
+  transition: transform .25s ease, background .25s ease !important;
+  cursor: default;
+}
+.stat-item:hover {
+  transform: translateY(-10px) !important;
+  background: rgba(255,255,255,0.05) !important;
+  border-radius: 16px;
+}
+
+/* ── Differences pillars ── */
+.pillar-card {
+  transition: transform .25s ease, box-shadow .25s ease !important;
+}
+.pillar-card:hover {
+  transform: translateY(-12px) !important;
+  box-shadow: 0 28px 60px rgba(0,0,0,0.14) !important;
+}
+
+/* ── Nav link in mobile menu ── */
+.mob-nav-link {
+  transition: background .18s ease, color .18s ease, padding-left .18s ease !important;
+}
+.mob-nav-link:hover {
+  background: #eff6ff !important;
+  padding-left: 28px !important;
+  color: var(--blue) !important;
 }
