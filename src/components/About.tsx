@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import { ScrollReveal } from './ScrollReveal';
 
 const features = [
@@ -40,13 +39,14 @@ export function About() {
           <ScrollReveal animation="left">
             <div style={{ position: 'relative' }}>
               <div style={{ position: 'relative', borderRadius: 20, overflow: 'hidden', aspectRatio: '4/5', boxShadow: '0 25px 60px rgba(0,0,0,0.15)' }}>
-                <Image
+                <img
                   src="https://images.unsplash.com/photo-1621905251918-48416bd8575a?w=800&h=1000&fit=crop&q=85&auto=format"
-                  alt="Instalación de tuberías y sistemas técnicos INGASA"
-                  fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  style={{ objectFit: 'cover' }}
-                  // TEMP_ASSET: Reemplazar con foto real de técnico INGASA
+                  alt="Técnico INGASA realizando instalación de tuberías certificadas en Cuenca Ecuador"
+                  width={800}
+                  height={1000}
+                  loading="lazy"
+                  decoding="async"
+                  style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
                 />
               </div>
               {/* Floating card */}
@@ -78,9 +78,9 @@ export function About() {
               </p>
 
               {/* Feature list */}
-              <div style={{ marginBottom: 36 }}>
+              <div style={{ marginBottom: 36, display: 'flex', flexDirection: 'column', gap: 8 }}>
                 {features.map((f) => (
-                  <div key={f} className="feat-item">
+                  <div key={f} style={{ display: 'flex', alignItems: 'flex-start', gap: 10 }}>
                     <CheckIcon />
                     <span style={{ fontSize: '0.9rem', fontWeight: 500, color: '#334155' }}>{f}</span>
                   </div>
@@ -92,7 +92,7 @@ export function About() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-primary"
-              style={{
+                style={{
                   display: 'inline-flex', alignItems: 'center', gap: 8,
                   padding: '14px 28px', background: '#2B73CC', color: '#fff',
                   borderRadius: 10, fontWeight: 700, fontSize: '0.95rem',

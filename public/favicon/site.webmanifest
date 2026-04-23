@@ -1,0 +1,14 @@
+{
+  "name": "INGASA – Instalaciones Técnicas Ecuador",
+  "short_name": "INGASA",
+  "description": "Instalaciones de GLP, agua, calefacción y redes contra incendios. Cuenca, Ecuador.",
+  "icons": [
+    { "src": "/favicon/android-chrome-192x192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/favicon/android-chrome-512x512.png", "sizes": "512x512", "type": "image/png" }
+  ],
+  "theme_color": "#2B73CC",
+  "background_color": "#07172e",
+  "display": "standalone",
+  "start_url": "/",
+  "lang": "es-EC"
+}

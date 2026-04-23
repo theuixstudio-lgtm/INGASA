@@ -1,5 +1,3 @@
-import Link from 'next/link';
-import Image from 'next/image';
 import { IconFilled, WhatsAppPath } from './Icon';
 
 const services = [
@@ -35,9 +33,9 @@ export function Footer() {
 
           {/* Brand */}
           <div style={{ gridColumn: 'span 1' }}>
-            <Link href="/" style={{ display: 'inline-block', marginBottom: 16, textDecoration: 'none' }}>
-              <Image src="/logos/logo-header.png" alt="INGASA" width={120} height={40} style={{ height: 38, width: 'auto', objectFit: 'contain' }} />
-            </Link>
+            <a href="/" style={{ display: 'inline-block', marginBottom: 16, textDecoration: 'none' }}>
+              <img src="/logos/logo-header.png" alt="INGASA – Instalaciones Técnicas Ecuador" width={120} height={40} style={{ height: 38, width: 'auto', objectFit: 'contain' }} />
+            </a>
             <p style={{ fontSize: '0.875rem', color: '#475569', lineHeight: 1.75, marginBottom: 20 }}>
               Empresa ecuatoriana especializada en instalaciones técnicas y suministro de productos certificados. Más de 20 años construyendo confianza.
             </p>
@@ -56,10 +54,10 @@ export function Footer() {
             <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 12 }}>
               {services.map((s) => (
                 <li key={s.label}>
-                  <Link href={s.href} target="_blank" style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: '0.875rem', color: '#475569', textDecoration: 'none' }}>
+                  <a href={s.href} target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: '0.875rem', color: '#475569', textDecoration: 'none' }}>
                     <span style={{ width: 4, height: 4, borderRadius: '50%', background: '#334155', display: 'block', flexShrink: 0 }} />
                     {s.label}
-                  </Link>
+                  </a>
                 </li>
               ))}
             </ul>

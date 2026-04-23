@@ -1,20 +1,16 @@
-"use client";
-
-import Image from 'next/image';
 import { IconFilled, WhatsAppPath } from './Icon';
 
 export function Hero() {
   return (
     <section style={{ position: 'relative', minHeight: '100svh', display: 'flex', alignItems: 'center', overflow: 'hidden' }}>
 
-      {/* Background image — copper pipes / industrial installation */}
-      <Image
+      {/* Background image */}
+      <img
         src="/copper-tube.png"
-        alt="Tuberías de cobre e instalaciones técnicas INGASA"
-        fill
-        priority
-        sizes="100vw"
-        style={{ objectFit: 'cover', objectPosition: 'center center' }}
+        alt="Tuberías de cobre – instalaciones técnicas INGASA Ecuador"
+        width={1920}
+        height={1080}
+        style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center center' }}
       />
 
       {/* Dark gradient overlay */}
@@ -35,7 +31,7 @@ export function Hero() {
       <div style={{ position: 'relative', zIndex: 10, width: '100%', maxWidth: '80rem', margin: '0 auto', padding: '7rem 1.5rem 4rem' }}>
         <div style={{ maxWidth: '48rem' }}>
 
-          {/* Badge — naranja INGASA */}
+          {/* Badge */}
           <div style={{
             display: 'inline-flex', alignItems: 'center', gap: 8,
             background: 'rgba(249,115,22,.18)',
@@ -49,18 +45,14 @@ export function Hero() {
             Gas · Agua · Calefacción · Ecuador
           </div>
 
-          {/* Headline display font */}
-          <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(3rem, 7vw, 5.5rem)', fontWeight: 900, color: '#fff', lineHeight: 1.0, letterSpacing: '0.01em', marginBottom: 6, textTransform: 'uppercase' }}>
-            Donde la calidad
-          </h1>
-          <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(3rem, 7vw, 5.5rem)', fontWeight: 900, color: '#F97316', lineHeight: 1.0, letterSpacing: '0.01em', marginBottom: 6, textTransform: 'uppercase' }}>
-            se une con la
-          </h1>
-          <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(3rem, 7vw, 5.5rem)', fontWeight: 900, color: '#fff', lineHeight: 1.0, letterSpacing: '0.01em', marginBottom: 28, textTransform: 'uppercase' }}>
-            perfección técnica
+          {/* Headline — un solo H1 con keyword principal */}
+          <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(3rem, 7vw, 5.5rem)', fontWeight: 900, lineHeight: 1.0, letterSpacing: '0.01em', marginBottom: 28, textTransform: 'uppercase' }}>
+            <span style={{ color: '#fff', display: 'block' }}>Donde la calidad</span>
+            <span style={{ color: '#F97316', display: 'block' }}>se une con la</span>
+            <span style={{ color: '#fff', display: 'block' }}>perfección técnica</span>
           </h1>
 
-          {/* Accent line — INGASA colors */}
+          {/* Accent line */}
           <div style={{ width: 72, height: 4, background: 'linear-gradient(90deg, #F97316, #2B73CC)', borderRadius: 2, marginBottom: 24 }} />
 
           {/* Subheadline */}

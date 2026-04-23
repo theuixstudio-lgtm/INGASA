@@ -9,7 +9,10 @@
       "Bash(npx claude-code-templates@latest --skill creative-design/frontend-design)",
       "Bash(git add *)",
       "Bash(git commit -m ' *)",
-      "Bash(git push *)"
+      "Bash(git push *)",
+      "Bash(pnpm install *)",
+      "Bash(pnpm approve-builds *)",
+      "Bash(pnpm exec *)"
     ]
   }
 }

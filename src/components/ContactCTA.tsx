@@ -69,9 +69,7 @@ export function ContactCTA() {
               Escribir por WhatsApp
             </a>
             <a
-              href="https://ingasa.com.ec/contacto/"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="mailto:ingassa1@gmail.com"
               className="btn-ghost"
               style={{
                 display: 'inline-flex', alignItems: 'center', gap: 8,
@@ -81,9 +79,9 @@ export function ContactCTA() {
                 fontWeight: 600, fontSize: '1rem', textDecoration: 'none',
               }}
             >
-              Formulario de contacto
+              Enviar correo
               <svg width={16} height={16} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" style={{ display: 'block', flexShrink: 0 }}>
-                <path d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
               </svg>
             </a>
           </div>

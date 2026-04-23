@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { ScrollReveal } from './ScrollReveal';
 
 const services = [
@@ -73,7 +72,7 @@ const services = [
 ];
 
 const ArrowRight = () => (
-  <svg width={16} height={16} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="svc-arrow" style={{ display: 'block', flexShrink: 0 }}>
+  <svg width={16} height={16} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" style={{ display: 'block', flexShrink: 0 }}>
     <path d="M17 8l4 4m0 0l-4 4m4-4H3" />
   </svg>
 );
@@ -103,7 +102,7 @@ export function Services() {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 24 }}>
           {services.map((s, i) => (
             <ScrollReveal key={s.title} delay={i * 70}>
-              <Link
+              <a
                 href={s.link}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -137,7 +136,7 @@ export function Services() {
                   Ver más
                   <ArrowRight />
                 </div>
-              </Link>
+              </a>
             </ScrollReveal>
           ))}
         </div>

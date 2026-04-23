@@ -1,8 +1,4 @@
-'use client';
-
 import { useState, useEffect } from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
 import { IconFilled, WhatsAppPath } from './Icon';
 
 const navLinks = [
@@ -37,21 +33,20 @@ export function Header() {
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 76 }}>
 
           {/* Logo */}
-          <Link href="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', flexShrink: 0 }}>
-            <Image
+          <a href="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', flexShrink: 0 }}>
+            <img
               src="/logos/logo-header.png"
-              alt="INGASA"
+              alt="INGASA – Instalaciones Técnicas Ecuador"
               width={130}
               height={44}
-              priority
               style={{ height: 38, width: 'auto', objectFit: 'contain', transition: 'opacity .3s' }}
             />
-          </Link>
+          </a>
 
-          {/* Desktop nav — hidden on mobile via .desk class */}
-          <nav className="desk-flex" style={{ alignItems: 'center', gap: 36 }}>
+          {/* Desktop nav */}
+          <nav aria-label="Navegación principal" className="desk-flex" style={{ alignItems: 'center', gap: 36 }}>
             {navLinks.map((l) => (
-              <Link
+              <a
                 key={l.href}
                 href={l.href}
                 className="nav-link"
@@ -65,11 +60,11 @@ export function Header() {
                 }}
               >
                 {l.label}
-              </Link>
+              </a>
             ))}
           </nav>
 
-          {/* Desktop CTA — hidden on mobile */}
+          {/* Desktop CTA */}
           <div className="desk-flex" style={{ alignItems: 'center', gap: 10 }}>
             <a
               href="tel:+593995020334"
@@ -107,7 +102,7 @@ export function Header() {
             </a>
           </div>
 
-          {/* Mobile hamburger — hidden on desktop via .mob class */}
+          {/* Mobile hamburger */}
           <button
             className="mob"
             onClick={() => setOpen(!open)}
@@ -135,7 +130,7 @@ export function Header() {
       >
         <div style={{ padding: '8px 24px 20px' }}>
           {navLinks.map((l) => (
-            <Link
+            <a
               key={l.href}
               href={l.href}
               onClick={() => setOpen(false)}
@@ -149,7 +144,7 @@ export function Header() {
               }}
             >
               {l.label}
-            </Link>
+            </a>
           ))}
           <div style={{ marginTop: 12, display: 'flex', flexDirection: 'column', gap: 10 }}>
             <a
